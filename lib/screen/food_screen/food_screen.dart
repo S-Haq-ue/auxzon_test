@@ -200,23 +200,25 @@ class FoodScreen extends StatelessWidget {
                       const SizedBox(
                         height: 20,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: SizedBox(
-                          child: RichText(
-                            text: TextSpan(
-                                text:
-                                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...",
-                                style: Theme.of(context).textTheme.displaySmall,
-                                children: [
-                                  TextSpan(
-                                    text: "Read More",
-                                    style: Theme.of(context).textTheme.displaySmall!.copyWith(color: Colors.redAccent),
-                                  )
-                                ]),
+                      Consumer<ProviderFood>(builder: (context, foodProvider, child) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: Wrap(
+                            children: [
+                              Text(foodProvider.readMore ? foodProvider.text.substring(0, 100) : foodProvider.text),
+                              InkWell(
+                                onTap: () {
+                                  foodProvider.readMore=true;
+                                },
+                                child: Text(
+                                  foodProvider.readMore ? "Read more" : "Read less",
+                                  style: Theme.of(context).textTheme.displaySmall!.copyWith(color: Colors.redAccent),
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                      ),
+                        );
+                      }),
                       const SizedBox(
                         height: 20,
                       ),
