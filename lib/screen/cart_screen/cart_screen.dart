@@ -1,4 +1,4 @@
-import 'package:auxzon_test/widgwts/bottom_bar.dart';
+import 'package:auxzon_test/widgets/bottom_bar.dart';
 import 'package:flutter/material.dart';
 
 class CartScreen extends StatelessWidget {
